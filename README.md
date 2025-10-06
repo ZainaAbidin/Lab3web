@@ -145,3 +145,131 @@ Tabel HTML memiliki struktur hierarki. Tag `<table>` adalah container utama. `<t
 **Hasil Tampilan:**
 <img width="1920" height="1080" alt="Screenshot (53)" src="https://github.com/user-attachments/assets/a134d7cc-b2c2-456b-bbba-ed28f8276e82" />
 
+# Langkah 7: Menggabungkan Sel dengan Rowspan
+Untuk membuat tabel lebih efisien, saya menggunakan atribut `rowspan` untuk menggabungkan sel secara vertikal. Pada contoh ini, kata "Teknik" di kolom Fakultas muncul tiga kali untuk tiga program studi yang berbeda. Dengan `rowspan="3"` pada sel "Teknik" di baris pertama, sel tersebut akan membentang menutupi tiga baris sekaligus. Ini membuat tabel lebih rapi dan mudah dibaca karena tidak ada pengulangan data yang tidak perlu.
+
+**Kode:**
+```
+<table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Fakultas</th>
+            <th>Program Studi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1.</td>
+            <td rowspan="3">Teknik</td>
+            <td>Teknik Informatika</td>
+        </tr>
+        <tr>
+            <td>2.</td>
+            <td>Teknik Industri</td>
+        </tr>
+        <tr>
+            <td>3.</td>
+            <td>Teknik Lingkungan</td>
+        </tr>
+    </tbody>
+</table>
+```
+##  Penjelasan:
+Atribut `rowspan` menggabungkan sel secara vertikal (ke bawah). `Nilai rowspan="3"` berarti sel tersebut akan membentang menutupi 3 baris. Perhatikan bahwa pada baris ke-2 dan ke-3, tidak ada tag `<td>` untuk kolom Fakultas karena sudah digantikan oleh sel yang menggunakan rowspan di baris pertama. Ini membuat struktur data lebih jelas dan menghindari redundansi.
+
+**Hasil Tampilan:**
+<img width="1920" height="1080" alt="Screenshot (54)" src="https://github.com/user-attachments/assets/8a4d66c5-66cc-4234-922e-bca60956f4d1" />
+
+# Langkah 8: Membuat File lab3_form.html
+Langkah selanjutnya adalah membuat file baru bernama `lab3_form.html` untuk mempelajari pembuatan form HTML. Form adalah elemen penting dalam web development karena digunakan untuk mengumpulkan input dari pengguna. Saya membuat struktur dasar HTML dengan judul "Membuat Form" di header.
+
+**Kode:**
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Lanjutan</title>
+</head>
+<body>
+    <header>
+        <h1>Membuat Form</h1>
+    </header>
+</body>
+</html>
+```
+## Penjelasan:
+File ini memiliki struktur yang sama dengan file-file sebelumnya. Form HTML adalah komponen interaktif yang memungkinkan pengguna memasukkan data yang kemudian dapat dikirim ke server untuk diproses.
+
+# Langkah 9: Membuat Form Dasar
+Saya membuat form sederhana untuk data pelanggan. Form dimulai dengan tag `<form>` yang memiliki atribut `action="proses.php"` (menentukan file yang akan memproses data) dan `method="post"` (metode pengiriman data). Di dalam form, saya menggunakan `<fieldset>` untuk mengelompokkan elemen-elemen terkait dan `<legend>` untuk memberikan judul grup. Form ini berisi field untuk Nama (input text), Alamat (textarea), dan Jenis Kelamin (radio button). Setiap field memiliki `<label>` yang terhubung dengan input melalui atribut for dan id.
+
+**Kode:**
+```
+<form action="proses.php" method="post">
+    <fieldset>
+        <legend>Data Pelanggan</legend>
+        <p>
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama">
+        </p>
+        <p>
+            <label for="alamat">Alamat</label>
+            <textarea id="alamat" name="alamat" cols="20" rows="3"></textarea>
+        </p>
+        <p>
+            <label>Jenis Kelamin</label>
+            <input id="jk_l" type="radio" name="kelamin" value="L" /><label for="jk_l">Laki-laki</label>
+            <input id="jk_p" type="radio" name="kelamin" value="P" /><label for="jk_p">Perempuan</label>
+        </p>
+        <p><input type="submit" value="Login"></p>
+    </fieldset>
+</form>
+```
+## Penjelasan:
+Form HTML menggunakan tag `<form>` dengan atribut penting: `action` menentukan URL tujuan pengiriman data, dan `method` menentukan cara pengiriman (POST atau GET). POST lebih aman karena data tidak terlihat di URL. Tag `<fieldset>` mengelompokkan field terkait, dan `<legend>` memberi judul grup tersebut. Setiap input memiliki atribut `name` yang menjadi kunci data saat dikirim ke server. Tag `<label>` meningkatkan accessibility dengan menghubungkan teks label ke input melalui atribut `for` yang merujuk ke `id` input. Radio button dengan `name` yang sama membentuk grup pilihan tunggal.
+
+**Hasil Tampilan:**
+<img width="1920" height="1080" alt="Screenshot (55)" src="https://github.com/user-attachments/assets/f196ee6b-ce1b-4091-b99e-976cac2e2357" />
+
+# Langkah 10: Menambahkan CSS pada Form
+Untuk membuat form lebih menarik, saya menambahkan CSS di dalam tag `<style>` pada bagian `<head>`. CSS ini mengatur lebar label agar seragam dengan `display: inline-block` dan `width: 100px`, memberikan border hijau pada input text dan textarea, serta mendesain tombol submit dengan background hijau, teks putih tebal, dan padding yang nyaman. Styling ini membuat form terlihat lebih profesional dan user-friendly.
+
+**Kode:**
+```
+<style>
+    form p > label {
+        display: inline-block;
+        width: 100px;
+    }
+    form input[type="text"], form textarea {
+        border: 1px solid #197a43;
+    }
+    form input[type="submit"] {
+        border: 1px solid #197a43;
+        background-color: #197a43;
+        color: #ffffff;
+        font-weight: bold;
+        padding: 5px 15px;
+    }
+</style>
+```
+## Penjelasan:
+CSS (Cascading Style Sheets) digunakan untuk mengatur tampilan visual elemen HTML. Selector form `p > label` menargetkan semua label yang merupakan child langsung dari tag `<p>` dalam form. Property `display: inline-block` membuat label bisa diatur lebarnya dengan `width: 100px`, sehingga semua label sejajar rapi. Selector form `input[type="text"]` menargetkan input dengan type tertentu. Border color `#197a43` adalah kode hex untuk warna hijau. Tombol submit diberi styling khusus dengan background hijau, text putih, dan padding untuk membuatnya lebih menonjol dan mudah diklik.
+
+**Hasil Tampilan:**
+<img width="1920" height="1080" alt="Screenshot (56)" src="https://github.com/user-attachments/assets/0574689b-2f24-499f-b5b0-865e97b69be1" />
+
+# Kesimpulan
+Melalui praktikum ini, saya telah berhasil mempelajari dan mengimplementasikan:
+
+### 1. List HTML:
+Ordered List (daftar berurutan), Unordered List (daftar tidak berurutan), dan Description List (daftar dengan deskripsi). Setiap jenis list memiliki kegunaan spesifik sesuai dengan struktur data yang ingin ditampilkan.
+### 2. Tabel HTML: 
+Membuat struktur tabel dengan header dan body, mengatur padding dan spacing sel, serta menggabungkan sel menggunakan rowspan untuk membuat tabel yang lebih efisien dan mudah dibaca.
+### 3. Form HTML: 
+Membuat form interaktif dengan berbagai jenis input (text, textarea, radio button, dropdown, dan multiple selection), memberikan styling dengan CSS untuk tampilan yang lebih menarik, serta memahami atribut-atribut penting seperti action, method, name, dan id.
+### 4. Implementasi CSS: 
+Menggunakan CSS untuk mempercantik tampilan dengan teknik modern seperti gradient background, border-radius, box-shadow, dan transition effects.
